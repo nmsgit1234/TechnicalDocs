@@ -1,0 +1,198 @@
+Count the words in file:
+========================
+CREATE TABLE docs (line STRING);
+
+LOAD DATA INPATH '/lab/mr/words' OVERWRITE INTO TABLE docs;
+
+CREATE TABLE word_counts AS
+SELECT word, count(1) AS count FROM
+(SELECT explode(split(line, '\s')) AS word FROM docs) w
+GROUP BY word
+ORDER BY word;
+
+Hive “One Shot” Commands
+=========================
+$ hive -e "SELECT * FROM mytable LIMIT 3";
+$ hive -S -e "select * FROM mytable LIMIT 3" > /tmp/myquery
+
+Executing Hive Queries from Files
+=================================
+$ hive
+hive> source /path/to/file/withqueries.hql;
+
+Shell Execution
+===============
+hive> ! /bin/echo "what up dog";
+"what up dog"
+hive> ! pwd;
+/home/me/hiveplay
+
+Query Column Headers
+====================
+hive> set hive.cli.print.header=true
+hive> SELECT * FROM system_logs LIMIT 3;
+tstamp severity server message
+1335667117.337715 ERROR server1 Hard drive hd1 is 90% full!
+1335667117.338012 WARN server1 Slow response from server2.
+1335667117.339234 WARN server2 Uh, Dude, I'm kinda busy right now...
+
+
+Test table creation
+====================
+CREATE EXTERNAL TABLE employees (
+name STRING,
+salary FLOAT,
+subordinates ARRAY<STRING>,
+deductions MAP<STRING, FLOAT>,
+address STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY '\001'
+COLLECTION ITEMS TERMINATED BY '\002'
+MAP KEYS TERMINATED BY '\003'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE;
+
+CREATE TABLE IF NOT EXISTS mydb.employees (
+name STRING COMMENT 'Employee name',
+salary FLOAT COMMENT 'Employee salary',
+subordinates ARRAY<STRING> COMMENT 'Names of subordinates',
+deductions MAP<STRING, FLOAT>
+COMMENT 'Keys are deductions names, values are percentages',
+address STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>
+COMMENT 'Home address')
+COMMENT 'Description of the table'
+TBLPROPERTIES ('creator'='me', 'created_at'='2012-01-02 10:00:00', ...)
+LOCATION '/user/hive/warehouse/mydb.db/employees';
+
+SHOW TBLPROPERTIES table_name
+
+
+Partition tables:
+=================
+create table txnrecsByCat (txnno INT, txndate STRING, custno INT, amount DOUBLE, product STRING, city STRING, state STRING, spendBy STRING )
+partitioned by ( category STRING )
+clustered by (state) INTO 10 buckets
+row format delimited
+fields terminated by ','
+stored as textfile;
+
+set hive.exec.dynamic.partition.mode=nonstrict;
+set hive.exec.dynamic.partition=true;
+set hive.enforce.bucketing=true;
+
+Load data into partition table
+------------------------------
+FROM txnrecords txn INSERT OVERWRITE TABLE txnrecsByCat PARTITION (category)
+SELECT txn.txnno, txn.txndate, txn.custno, txn.amount, txn.product, txn.city, txn.state, txn.spendBy, txn.Category DISTRIBUTE BY Category;
+
+show partitions txnrecsbycat;
+
+CREATE EXTERNAL TABLE employees (
+name STRING,
+salary FLOAT,
+subordinates ARRAY<STRING>,
+deductions MAP<STRING, FLOAT>,
+address STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>
+)
+PARTITIONED BY (country STRING,state STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY '%'
+MAP KEYS TERMINATED BY ':'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION '/lab/mr/hive/employee_real';
+
+
+LOAD DATA INPATH '/lab/mr/employees' INTO TABLE employees PARTITION (country='U.S.A',state='Chicago');
+
+CREATE EXTERNAL TABLE employees1 (
+name STRING,
+salary FLOAT,
+subordinates ARRAY<STRING>,
+deductions MAP<STRING, FLOAT>,
+address STRUCT<street:STRING, city:STRING, state:STRING, zip:INT>,
+state STRING,
+country STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+COLLECTION ITEMS TERMINATED BY '%'
+MAP KEYS TERMINATED BY ':'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION '/lab/mr/hive/employee_tmp';
+
+FROM employees1 employee INSERT OVERWRITE TABLE employees PARTITION (country,state)
+SELECT employee.name, employee.salary, employee.subordinates, employee.deductions, employee.address, employee.state, employee.country DISTRIBUTE BY country;
+
+INSERT OVERWRITE TABLE employees PARTITION(country,state) SELECT name, salary, subordinates, deductions, address,country,state from employees1;
+
+External Partitioned Tables
+--------------------------
+CREATE EXTERNAL TABLE IF NOT EXISTS log_messages (
+hms INT,
+severity STRING,
+server STRING,
+process_id INT,
+message STRING)
+PARTITIONED BY (year INT, month INT, day INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+
+ALTER TABLE log_messages ADD PARTITION(year = 2012, month = 1, day = 2)
+LOCATION 'hdfs://master_server/data/log_messages/2012/01/02';
+
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.dynamic.partition.mode=nonstrict;
+
+Customizing Table Storage Formats
+=========================
+
+
+Hive view
+=========
+CREATE VIEW orders(state, city, part) AS
+SELECT cols["state"], cols["city"], cols["part"]
+FROM dynamictable
+WHERE cols["type"] = "request";
+
+Creating index
+=============
+CREATE INDEX employees_index
+ON TABLE employees (country)
+AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler'
+WITH DEFERRED REBUILD
+IDXPROPERTIES ('creator = 'me', 'created_at' = 'some_time')
+IN TABLE employees_index_table
+PARTITIONED BY (country, name)
+COMMENT 'Employees indexed by country and name.';
+
+Determining Installed Codecs
+============================
+# hive -e "set io.compression.codecs"
+io.compression.codecs=org.apache.hadoop.io.compress.GzipCodec,
+org.apache.hadoop.io.compress.DefaultCodec,
+org.apache.hadoop.io.compress.BZip2Codec,
+org.apache.hadoop.io.compress.SnappyCodec
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

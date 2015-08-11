@@ -1,0 +1,123 @@
+
+Logging into the hbase Shell
+=============================
+> hbase shell
+
+List all tables
+==============
+list
+list 'testtable'
+
+Show hbase version
+==================
+version
+
+Status of the cluster
+=====================
+status
+status “detailed”
+
+Lists tools or commands for hbase operations
+============================================
+tools
+
+Shutdown the cluster
+====================
+shutdown
+
+Create tables and put data
+==========================
+create 'emp', 'personalinfo'
+•put 'emp', '001', 'personalinfo:name', 'John'
+•put 'emp', '001', 'personalinfo:age', '35'
+
+
+Update columns
+=============
+put 'emp', '001', 'personalinfo:age', '37‘
+
+
+delete rows
+===========
+delete 'testtable', 'myrow-2', 'colfam1:q2'
+truncate 'testtable; --  deletes all rows.
+deleteall 'custs', '4000090‘
+
+
+Query tables
+============
+scan 'emp'
+describe 'emp'
+get 'emp', '001'
+
+Add additional column families
+============================
+disable 'emp'
+alter 'emp','courses'
+enable 'emp'
+
+drop the tables
+===============
+disable 'testtable'
+drop 'testtable'
+
+Get only limited number of rows starting from a specified key
+=============================================================
+scan 'custs' ,{ LIMIT => 2, STARTROW => '4000004' }
+
+Selecting rows whose columns have specific values
+=================================================
+scan 'custs', { COLUMNS => 'personalinfo:age', FILTER => "ValueFilter( >, 'binary:60' )" }
+scan 'custs', { COLUMNS => 'personalinfo:profession', LIMIT => 10, FILTER => "ValueFilter( >, 'binary:art' )" }
+
+Count number of rows in a table
+==============================
+Count 'custs'
+
+working with counters
+=====================
+create 'counters','daily'
+incr'counters', '20130818', 'daily:hits', 2
+get_counter'counters', '20130818', 'daily:hits'
+
+
+Using HIve with HBase
+=====================
+Defining a Hive Table pointing to Hbase Table
+
+CREATE EXTERNAL TABLE custshbase(custid int, firstnamestring, lastnamestring, age int, profession string)
+STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,personalinfo:firstname,personalinfo:lastname,personalinfo:age,personalinfo:profession")
+TBLPROPERTIES("hbase.table.name" = "custs");
+
+Once table is defined, it is as simple as writing an SQL Query
+
+select profession, count(*) from custshbasegroup by profession;
+
+Using Pig with HBase
+====================
+grunt> raw = LOAD 'tutorial/data/excite-small.log' \
+USING PigStorage('\t') AS (user, time, query);
+T = FOREACH raw GENERATE CONCAT(CONCAT(user, '\u0000'), time), query;
+grunt> STORE T INTO 'excite' USING \
+org.apache.pig.backend.hadoop.hbase.HBaseStorage('colfam1:query');
+
+
+grunt> DEFINE LoadHBaseUser org.apache.pig.backend.hadoop.hbase.HBaseStorage( \
+'data:roles', '-loadKey');
+grunt> U = LOAD 'user' USING LoadHBaseUser;
+grunt> DUMP U;
+
+grunt> R = LOAD 'excite' USING \
+org.apache.pig.backend.hadoop.hbase.HBaseStorage('colfam1:query', '-loadKey') \
+AS (key: chararray, query: chararray);
+
+grunt> S = foreach R generate FLATTEN(STRSPLIT(key, '\u0000', 2)) AS \
+(user: chararray, time: long), query;
+grunt> DESCRIBE S;
+S: {user: chararray,time: long,query: chararray}
+
+
+
+
+
+'

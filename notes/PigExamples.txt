@@ -1,0 +1,258 @@
+To find the total count of records:
+==================================
+A = LOAD 'data' AS (f1:int,f2:int,f3:int);
+
+DUMP A;
+(1,2,3)
+(4,2,1)
+(8,3,4)
+(4,3,3)
+(7,2,5)
+(8,4,3)
+
+B = GROUP A BY f1;
+
+DUMP B;
+(1,{(1,2,3)})
+(4,{(4,2,1),(4,3,3)})
+(7,{(7,2,5)})
+(8,{(8,3,4),(8,4,3)})
+
+X = FOREACH B GENERATE COUNT_STAR(A);
+
+dump X;
+
+
+Word count: Find the count of each word:
+========================================
+A = load '/lab/mr/words' as (line:chararray);
+
+dump A;
+Big data[1][2] is the term for a collection of data sets so large and complex that it becomes difficult to process using on-hand database management tools or traditional data processing applications. The challenges include capture, curation
+
+B = foreach A generate flatten(TOKENIZE(line)) as word;
+C = group B by word;
+D =  foreach C generate group,COUNT(B) as count;
+E = order D by count ASC;
+
+dump E;
+
+Joining 2 tables:
+=================
+A = load '/lab/mr/txns' using PigStorage(',') as (txnid:chararray,date:chararray,custid:chararray,amount:float);
+B = group A by custid;
+C = foreach B generate group,SUM(A.amount);	
+D = load '/lab/mr/custs' using PigStorage(',') as (custid:chararray,lastname:chararray,firstname:chararray,age:int,profession:chararray);
+E = join C by group, D by custid;
+
+Find the top url:
+=================
+A = load '/lab/mr/users' using PigStorage(',') as (name:chararray,age:int);
+B = load '/lab/mr/urls' using PigStorage(',') as (name:chararray,url:chararray);
+C = filter A by age > 30;
+D = join A by name,C by name;
+D = join B by name,C by name;
+E = group D by url;
+F = foreach E generate group,COUNT(D) as count;
+G = order F by count asc;
+H = limit G 1;
+
+Filter from the map data files:
+===============================
+A = load '/lab/mr/baseball' as (name:chararray,team:chararray,pos:bag{t:(p:chararray)},bat:map[]);
+B = filter A by (int)bat#'games' == 212;       
+
+Truncating the currency to two digits:
+======================================
+A = load '/lab/mr/NYSE_daily' as (exchange:chararray,symbol:chararray,date:chararray,open:float,low:float,close:float,volume:int,adj_close:float);
+B = foreach A generate (ROUNT(volume*close*100f))/1000f;
+dump B;
+
+Loading the data:
+=================
+A = load '/lab/mr/NYSE_daily' as (exchange:chararray,symbol:chararray,date:chararray,open:float,low:float,close:float,volume:int,adj_close:float);
+B = foreach A generate exchange..date;
+
+Top 10 Customer with maximum transactions:
+==========================================
+custs = load '/lab/mr/custs' using PigStorage(',') as (custid:chararray,lastname:chararray,firstname:chararray,age:chararray,profession:chararray);
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = group txns by custid;                                                                                           
+B = foreach A generate group,SUM(txns.amount) as totaltxn;                                                          
+C = order B by totaltxn desc;
+D = limit C 10;
+describe D;
+E = join D by group,custs by custid;
+dump E;
+
+
+Number of credit and cash based transactions:
+=============================================
+custs = load '/lab/mr/custs' using PigStorage(',') as (custid:chararray,lastname:chararray,firstname:chararray,age:chararray,profession:chararray);
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = filter txns by paymentType == 'credit';
+B = filter txns by paymentType == 'cash';
+C = group A all;
+D = group B all;
+E = foreach C generate group,COUNT(A);
+
+Alternative:
+------------
+custs = load '/lab/mr/custs' using PigStorage(',') as (custid:chararray,lastname:chararray,firstname:chararray,age:chararray,profession:chararray);
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+split txns into cashtype if paymentType == 'cash',credittype if paymentType == 'credit';
+cashgroup = group cashtype all;
+creditgroup = group credittype all;
+x = foreach cashgroup generate group,COUNT(cashtype);
+y = foreach creditgroup generate group, COUNT(credittype);
+dump x;
+dump y;
+
+Most selling product month wise:
+=================================
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = group txns by (SUBSTRING(date,0,2),product);
+B = foreach A generate flatten(group) as (month,pname),COUNT(txns.product) as count;
+C = group B by month;
+D = foreach C{
+aa = order B by count desc;
+bb = limit aa 1;
+generate flatten(bb);
+};
+
+
+Most selling product state wise:
+================================
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = group txns by (state,product);
+B = foreach A generate flatten(group) as (state,product),COUNT(txns.product) as count;
+C = group B by state;
+D = foreach C{
+aa = order B by count desc;
+bb = limit aa 1;
+generate flatten(bb);
+};
+
+Most selling product state wise:
+================================
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = group txns by (state,city,product);
+B = foreach A generate flatten(group) as (state,city,product),COUNT(txns.product) as count;
+C = group B by (state,city);
+D = foreach C{
+aa = order B by count desc;
+bb = limit aa 1;
+generate flatten(bb);
+};
+
+Most selling product category month wise;
+=========================================
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = group txns by (SUBSTRING(date,0,2),category, product);
+B = foreach A generate flatten(group) as (month,category,pname),COUNT(txns.product) as count;
+C = group B by month;
+D = foreach C{
+aa = order B by count desc;
+bb = limit aa 1;
+generate flatten(bb);
+};
+
+Most selling product for persons below or equal to age 40:
+===========================================================
+custs = load '/lab/mr/custs' using PigStorage(',') as (custid:chararray,lastname:chararray,firstname:chararray,age:chararray,profession:chararray);
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+custtxns = join txns by custid, custs by custid;
+below40 = filter custtxns by (int)age <=40;
+A = group below40 by product;
+B = foreach A generate flatten(group) as product, COUNT(below40) as count;
+C = order B by count desc;
+D = limit C 1;
+dump D;
+
+
+Find the distinct product and categories:
+==========================================
+txns = load '/lab/mr/txns' using PigStorage(',') as (no:int,date:chararray,custid:chararray,amount:float,category:chararray,product:chararray,city:chararray,state:chararray,paymentType:chararray);
+A = foreach txns{
+category = txns.category;
+ucat = distinct category;
+generate ucat;
+};
+
+Batting average team wise:
+==========================
+players = load '/lab/mr/baseball' as (name:chararray,team:chararray,pos:bag{t:(p:chararray)},bat:map[]);
+A = foreach players generate name,team,bat#'batting_average' as average;
+B = group A by team;
+C = foreach B generate team,SUM(average) as avg;
+D = order C by avg;
+dump D;
+
+Maximum high and Maximum low for the particular date passed from the command line:
+==================================================================================
+A = load '/lab/mr/NYSE_daily' as (exchange:chararray,symbol:chararray,date:chararray,open:float,high:float,low:float,close:float,volume:int,adj_close:float);
+B = filter A by date == '$DATE';
+C = group B by date;
+D = foreach B generate date, MAX(B.high),MAX(B.low);
+
+
+pig -p DATE=2009-12-17 daily.pig
+pig -param_file daily.params daily.pig
+
+
+
+Number of stock symbols for each exchange:
+==========================================
+daily = load '/lab/mr/NYSE_daily' as (exchange:chararray,symbol:chararray);
+exchanges = group daily by exchange;
+A = foreach exchanges {
+aa = daily.symbol;
+bb = distinct aa;
+generate group, COUNT(bb);
+};
+
+
+Macro Examples
+==============
+define dividend_analysis (daily, year, daily_symbol, daily_open, daily_close)
+returns analyzed {
+	divs          = load '/lab/mr/NYSE_dividends' as (exchange:chararray,symbol:chararray, date:chararray, dividends:float);
+	divsthisyear  = filter divs by date matches '$year-.*';
+	dailythisyear = filter $daily by date matches '$year-.*';
+	jnd           = join divsthisyear by symbol, dailythisyear by $daily_symbol;
+	$analyzed     = foreach jnd generate dailythisyear::$daily_symbol,$daily_close - $daily_open;
+};
+
+daily 	= load '/lab/mr/NYSE_daily' as (exchange:chararray, symbol:chararray,
+			date:chararray, open:float, high:float, low:float, close:float,
+			volume:int, adj_close:float);
+results = dividend_analysis(daily, '2009', 'symbol', 'open', 'close');
+dump results;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
