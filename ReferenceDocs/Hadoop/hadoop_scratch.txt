@@ -1,0 +1,9 @@
+1. Unreasonable efferctiveness of data  by Google
+
+Saarc
+Mahout 
+	recommendation, collaborative filtering, clustering.
+OLTP and OLAP
+tablo
+sqoop
+flume

@@ -1,0 +1,30 @@
+
+Impala
+Storm, Spark Streaming, or Samza
+azure
+apache slider
+Apache twill
+Avro also has a column-oriented format called Trevni
+2 Current software platforms
+2.1 Android
+2.1.1 CyanogenMod
+2.1.2 Cyanogen OS
+2.1.3 Fire OS
+2.1.4 MIUI
+2.1.5 Flyme OS
+2.2 iOS
+2.3 Windows Phone
+2.4 BlackBerry
+2.5 Firefox OS
+2.6 Sailfish OS
+2.7 Tizen
+2.8 Ubuntu Touch OS
+snipping tool
+hprof
+parquet
+cascading
+crunch.
+google adwords
+Grizzly
+RESTLET
+
