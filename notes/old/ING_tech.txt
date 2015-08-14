@@ -1,0 +1,103 @@
+UML
+
+4
+
+
+JSP
+
+3
+
+
+JAVA 1.4 and above
+
+4
+
+
+Axis Web Services
+
+3
+
+
+CSS
+
+3
+
+
+Html 4.0
+
+4
+
+
+JavaScript
+
+4
+
+
+Junit
+
+3
+
+
+Pl/Sql
+
+3
+
+
+SQL
+
+4
+
+
+xml
+
+3
+
+
+SOAP
+
+3
+
+
+Ehcache 
+
+2
+
+
+Owasp esapi Owasp Enterprise Security API
+
+0
+
+
+Filenet 4.5 
+
+0
+
+
+Eclipse 3.5 
+
+4
+
+
+Star team 2008
+
+0
+
+
+Sql Developer for 11g
+
+3
+
+
+HP Quality Centre 
+
+3
+
+
+Avaya Dialog Designer
+
+0
+
+
+Jdbc 4.0
+
+3

@@ -1,0 +1,542 @@
+Which one of the following allows you to determine the name and version number of the servlet or JSP engine that you are using?  
+Choice 1   
+ <%= application.getInfo("serverinfo") %>  
+Choice 2   
+ <%= runtime.getServletContext() %>  
+Choice 3   
+ <%= Runtime.getRuntime().getServerInfo() %>  
+Choice 4   
+ <%= application.getServerInfo() %>  
+Choice 5   
+ <%= server.getServletInfo() %>  
+
+
+What is the correct method signature for doFilter?  
+Choice 1   
+ FilterChain doFilter( ServletRequest, ServletResponse ) throws ServletException, IOException  
+Choice 2   
+ void doFilter( ServletRequest, ServletResponse, FilterChain ) throws ServletException, IOException  
+Choice 3   
+ void doFilter( ServletRequest, ServletResponse ) throws ServletException, IOException  
+Choice 4   
+ void doFilter( HttpServletRequest, HttpServletResponse, FilterConfig ) throws ServletException, IOException  
+Choice 5   
+ void doFilter( HttpServletRequest, HttpServletResponse, FilterChain ) throws ServletException, IOException  
+
+How do you include a file in your JSP page in which its name is dynamically updated in the String "filename" variable for each request?  
+Choice 1   
+ <%@jsp:include page="<% filename %>" %>  
+Choice 2   
+ <%include page="filename"%>  
+Choice 3   
+ <%jsp:include file= getParameter("filename") %>  
+Choice 4   
+ <jsp:include page="<%= filename %>"/>  
+Choice 5   
+ <%@include file="<%= filename %>"%>  
+
+How do you include a file in your JSP page in which its name is dynamically updated in the String "filename" variable for each request?  
+Choice 1   
+ <%@jsp:include page="<% filename %>" %>  
+Choice 2   
+ <%include page="filename"%>  
+Choice 3   
+ <%jsp:include file= getParameter("filename") %>  
+Choice 4   
+ <jsp:include page="<%= filename %>"/>  
+Choice 5   
+ <%@include file="<%= filename %>"%>  
+
+Which one of the following ensures that the JSP container dispatches multiple client requests in the order in which they were received and one at a time?  
+Choice 1   
+ <%@ page isThreadSafe="yes" %>  
+Choice 2   
+ <%@ page isThreadSafe="false" %>  
+Choice 3   
+ <%@ page isThreadSafe="0" %>  
+Choice 4   
+ <%@ page isThreadSafe="null" %>  
+Choice 5   
+ <%@ page isThreadSafe="true" %>  
+
+ 
+
+How do you store an instance of the bean in the code above such that it has application scope within a servlet?  
+Choice 1   
+ getServletConfig().getServletContext().setParameter( new EmployeeBean(200000, 57, "David") );  
+Choice 2   
+ request.getServletContext().setAttribute( new EmployeeBean(200000, 57, "David") );  
+Choice 3   
+ getApplication().setAttribute( "emp", new EmployeeBean(200000, 57, "David") );  
+Choice 4   
+ getServletContext().setAttribute("emp", new EmployeeBean(200000, 57, "David"));  
+Choice 5   
+ application.setAttribute("emp", new EmployeeBean(200000, 57, "David") );  
+
+methods can be overriten in jsp declaration
+
+A Web Application, written using JSP pages, makes use of Wizard-style walkthroughs to aid users whenever they make complicated changes. A change to the ordering of JSP pages within a Wizard takes over three hours to complete. This is unacceptable for such a trivial and common operation.  
+  Given the above scenario, what is a possible approach for reducing the time taken to change the ordering of pages?  
+Choice 1   
+ Implement the JSP pages with more embedded scriptlets designed to make page ordering easier to change.  
+Choice 2   
+ Implement the JSP pages using a templating scheme.  
+Choice 3   
+ Do not share JSP pages between Wizards.  
+Choice 4   
+ Use a Servlet to abstract the difference between page control and page visualization.  
+Choice 5   
+ Implement the JSP pages using a Model 1 architecture.  
+
+
+The servlet/JSP framework allows you to specify the security requirements of an application in the deployment descriptor.  
+  Referring to the scenario above, what is the purpose of the <auth-constraint> sub-element <role-name>?  
+Choice 1   
+ It specifies a user that can access the resources specified in the security-constraint.  
+Choice 2   
+ It specifies the level of encryption required for accessing the resources specified in the security-constraint.  
+Choice 3   
+ It specifies the authority level required for accessing the resources specified in the security-constraint.  
+Choice 4   
+ It specifies a role that can access the resources specified in the security-constraint.  
+Choice 5   
+ It specifies the authentication mechanism used for accessing the resources specified in the security-constraint.  
+
+Which one of the following web.xml elements do you use to define an initialization parameter for your servlet?  
+Choice 1   
+ <initialization-param>  
+Choice 2   
+ <init-parameter>  
+Choice 3   
+ <param>  
+Choice 4   
+ <servlet-param>  
+Choice 5   
+ <init-param>  
+
+ Referring to the circle tag defined in the tag library above, what is the location of Circle.class relative to your Web application's document root directory?  
+Choice 1   
+ /WEB-INF/lib/tags  
+Choice 2   
+ /WEB-INF/classes/tags  
+Choice 3   
+ /WEB-INF/tags  
+Choice 4   
+ /WEB-INF/tlds/tags  
+Choice 5   
+ /WEB-INF/taglibs/tags  
+
+
+Referring to the sample code above, how do you retrieve the database URL "dbURL" defined in web.xml when your servlet is first loaded?  
+Choice 1   
+ Override HttpServlet.load(), call getServletConfig() to retrieve 
+a copy of ServletConfig, call ServletConfig's getInitParameter("dbURL").  
+Choice 2   
+ Override HttpServlet.init(), call getServletConfig() to retrieve 
+a copy of ServletConfig, call ServletConfig's getInitParameter("dbURL").  
+Choice 3   
+ Override HttpServlet.init(ServletConfig) call ServletConfig's 
+getInitParameter("dbURL").  
+Choice 4   
+ Override HttpServlet.startup() call ServletConfig's 
+getInitParameter("dbURL").  
+Choice 5   
+ Call getServletConfig() from doPost(), doGet(), or service() upon 
+receipt of a request to get a copy of ServletConfig, call 
+ServletConfig's getInitParameter("dbURL").  
+
+
+Which class or interface do you use to retrieve the HttpSession object associated with the current user?  
+Choice 1   
+ HttpServletResponse  
+Choice 2   
+ HttpServletRequest  
+Choice 3   
+ ServletConfig  
+Choice 4   
+ HttpServlet  
+Choice 5   
+ ServletContext  
+
+Which one of the following describes SSL?  
+Choice 1   
+ Framework for negotiating a mutually acceptable set of encryption and key exchange protocols  
+Choice 2   
+ Framework for negotiating a mutually acceptable set of encryption protocols  
+Choice 3   
+ Web standard protocol for data encryption  
+Choice 4   
+ Web standard for data encoding  
+Choice 5   
+ Protocol for negotiating a mutually acceptable set of key exchange protocols  
+
+What is the purpose of using a Business Delegate design pattern?  
+Choice 1   
+ To encapsulate business data into reusable components  
+Choice 2   
+ To provide preprocessing of a client Web request  
+Choice 3   
+ To reduce coupling between presentation-tier clients and business services  
+Choice 4   
+ To encode/decode HTTP responses and requests  
+Choice 5   
+ It is a centralized presentation-tier access point for coordinating user requests with business services.  
+
+Which one of the following components represents the model in an MVC (Model-View-Controller) architecture?  
+Choice 1   
+ EJB  
+Choice 2   
+ Servlet  
+Choice 3   
+ JSP  
+Choice 4   
+ Browser  
+Choice 5   
+ ServletContext  
+
+Will the JSP code above cause a compilation error?  
+Choice 1   
+ No, y and x are initialized and in scope.  
+Choice 2   
+ Yes, the value of y is not initialized.  
+Choice 3   
+ Yes, the value of x is not initialized.  
+Choice 4   
+ Yes, neither the value of x nor y are initialized.  
+Choice 5   
+ Yes, y and x are out of scope.  
+
+
+Once the credit card transaction is complete, what code do you add to "add code here" in the sample code above to remove the user's session information?  
+Choice 1   
+ request.getSession().invalidate();  
+Choice 2   
+ getSession().delete();  
+Choice 3   
+ session.close();  
+Choice 4   
+ request.getSession().remove();  
+Choice 5   
+ request.getSession().destroy();  
+
+
+Referring to the deployment descriptor snippet above, how do you read the init-param "XSLTStockTransform" from javax.servlet.Filter.init(FilterConfig filterConfig)?  
+Choice 1   
+ getServletConfig().getParameter("XSLTStockTransform")  
+Choice 2   
+ filterConfig.getParameter("XSLTStockTransform")  
+Choice 3   
+ getInitParameter("XSLTStockTransform")  
+Choice 4   
+ getServletConfig().getInitParameter("XSLTStockTransform")  
+Choice 5   
+ filterConfig.getInitParameter("XSLTStockTransform")  
+
+
+Which one of the following elements do you use to define an initialization parameter that is available to all servlets in an application?  
+Choice 1   
+ <param>  
+Choice 2   
+ <context-param>  
+Choice 3   
+ <init-param>  
+Choice 4   
+ <application-param>  
+Choice 5   
+ <init-parameter>  
+
+What is the name of the tag library element that defines if an attribute can have an expression based on a request time value?  
+Choice 1   
+ request-time  
+Choice 2   
+ rtexprvalue  
+Choice 3   
+ request  
+Choice 4   
+ rtexpr  
+Choice 5   
+ request-value  
+
+Which one of the following methods sends the current contents of response output stream to the browser?  
+Choice 1   
+ response.flushheaders()  
+Choice 2   
+ response.release()  
+Choice 3   
+ out.flush()  
+Choice 4   
+ out.close()  
+Choice 5   
+ response.sendheaders()  
+
+
+A JSP page is compiled into a Servlet; therefore, it can do everything that a Servlet can do.  
+  If the above statement is true, then why is an IllegalStateException thrown when opening a Binary Stream output to the client from a JSP page but NOT to a Servlet?  
+Choice 1   
+ JSP pages use a different Streaming mechanism to Servlets.  
+Choice 2   
+ JSP pages have more security settings than Servlets.  
+Choice 3   
+ JSP pages can write a Binary Stream using its implicit out stream.  
+Choice 4   
+ JSP pages must flush their buffers before changing the stream type; Servlets do not have this limitation.  
+Choice 5   
+ JSP has already opened the stream as a JspWriter.  
+
+
+How does a custom tag introduce new scripting variables into a JSP page?  
+Choice 1   
+ Implement getVariableInfo() on a TagExtraInfo class.  
+Choice 2   
+ Add <scripting-variable>..</scripting-variable> to the tag's Tag Library Descriptor (TLD) entry.  
+Choice 3   
+ Implement getScriptingVariables to the tag's class implementation.  
+Choice 4   
+ Implement a new TagAttributeInfo for each new Scripting Variable.  
+Choice 5   
+ Implement getScriptingVariables on a TagInfo class.  
+
+
+What CLASS do you extend to create a custom tag that must process the contents of the tag body?  
+Choice 1   
+ BodyTagContent  
+Choice 2   
+ Tag  
+Choice 3   
+ TagSupport  
+Choice 4   
+ BodyTagSupport  
+Choice 5   
+ BodyTag  
+
+Which one of the following is NOT a valid web.xml element of a web-resource-collection?  
+Choice 1   
+ <realm>  
+Choice 2   
+ <web-resource-name>  
+Choice 3   
+ <description>  
+Choice 4   
+ <http-method>  
+Choice 5   
+ <url-pattern>  
+
+
+Which one of the following JSP code snippets do you use to perform one-time initialization of instance variables defined in a JSP declaration prior to any other method being called?  
+Choice 1   
+ <% ... one-time initialization code ... %>  
+Choice 2   
+ The init method must be coded in a Servlet base class.  
+Choice 3   
+ <%! public void jspInit() {} %>  
+Choice 4   
+ <%! static { 
+... one-time initialization code ... 
+} %>  
+Choice 5   
+ <%! public void init() {} %>  
+
+Which one of the following correctly nests one custom tag within another?  
+Choice 1   
+ <stock:ticker><jsp:param name="price"/></price></stock:ticker>  
+Choice 2   
+ <stock:ticker></stock:ticker><stock:price/><stock:price/>  
+Choice 3   
+ <stock:ticker><stock:price/></>  
+Choice 4   
+ <stock:ticker><stock:price></stock:ticker></stock:price>  
+Choice 5   
+ <stock:ticker><stock:price/></stock:ticker>  
+
+
+What potential problem, if any, exists for the sample JSP page above?  
+Choice 1   
+ j = j+1 is not atomic.  
+Choice 2   
+ The resources put into people will never be garbage collected.  
+Choice 3   
+ There is no problem.  
+Choice 4   
+ The users2resource is not thread safe.  
+Choice 5   
+ The people are not thread safe.  
+
+
+A Web application is located in the directory /tomcat/webapps/stocks.  
+  Referring to the scenario above, what is the location of the application's deployment descriptor file?  
+Choice 1   
+ /tomcat/webapps/stocks/docs  
+Choice 2   
+ /tomcat/webapps/stocks/WEB-INF  
+Choice 3   
+ /tomcat/webapps/stocks/conf  
+Choice 4   
+ /tomcat/webapps/stocks/WEB-INF/conf  
+Choice 5   
+ /tomcat/webapps/stocks  
+
+
+What attribute of the page directive do you use to have uncaught run-time exceptions automatically forwarded to an error processing page?  
+Choice 1   
+ page.error()  
+Choice 2   
+ Exception  
+Choice 3   
+ errorPage  
+Choice 4   
+ Respond  
+Choice 5   
+ javax.throwable  
+
+
+ final int MAX_COUNT = 9; 
+2) static int MAX_COUNT = 9; 
+3) int MAX_COUNT; 
+4) synchronized void doIt() { x++; } 
+5) public void doIt() { x++; }  
+  Which line or lines of the above code fragments can appear inside a <% .. %> SCRIPTLET?  
+Choice 1   
+ Lines 1 and 2  
+Choice 2   
+ Lines 1 and 3  
+Choice 3   
+ Lines 2 and 5  
+Choice 4   
+ Only line 4  
+Choice 5   
+ Only line 5  
+
+
+What javax.servlet.http.Cookie methods are used to set a cookie's expiration time?  
+Choice 1   
+ setMaxAge(int seconds)  
+Choice 2   
+ setExpiration(int minutes)  
+Choice 3   
+ setMaxAge(int minutes)  
+Choice 4   
+ setMinAge(int seconds)  
+Choice 5   
+ updateMaxAge(int seconds)  
+
+
+Referring to the JSP code above, what output is generated?  
+Choice 1   
+ 4  
+Choice 2   
+ out.println(i);out.println(i);out.println(i);out.println(i);out.println(i);  
+Choice 3   
+ 01234  
+Choice 4   
+ out.println(i);  
+Choice 5   
+ Translation/compilation error  
+
+
+Which one of the following lists three mechanisms that a Web Server can use to authenticate a user?  
+Choice 1   
+ Data Based, Mutual, and X.25  
+Choice 2   
+ HTTP Classic, Form Based, and HTTP Digest  
+Choice 3   
+ Form Based, HTTP Basic, and HTTPS Client  
+Choice 4   
+ Clear, HTTP Basic, and HTTP Mutual  
+Choice 5   
+ X.25, Clear, and HTTP Mutual  
+
+
+Which one of the following can be specified by using JSP directives (such as <%@ page ... %>)?  
+Choice 1   
+ The MIME type of the generated response  
+Choice 2   
+ Class-level variables  
+Choice 3   
+ The relative url of a resource to be dynamically included in the response  
+Choice 4   
+ Scripting variables  
+Choice 5   
+ The functions declared in the JSP page  
+
+Which one of the following techniques allows multiple users to share a single database connection?  
+Choice 1   
+ Have all of the database functions reside in a .JAR file on each client machine.  
+Choice 2   
+ Have each user use the single DB username and password for connection to the database.  
+Choice 3   
+ Have the database functions placed in a single bean and have all users connect to that bean.  
+Choice 4   
+ Have the database accept multiple connections on multiple ports.  
+Choice 5   
+ Have each user connect to the database using his own username and password.  
+
+
+How is it possible to programmatically retrieve a list of custom tags supported by a tag library?  
+Choice 1   
+ TldInfo.getTags()  
+Choice 2   
+ JSPEngine.getTags()  
+Choice 3   
+ TagLibraryInfo.getTags()  
+Choice 4   
+ TagLibraryContext.getTags()  
+Choice 5   
+ TagSupport.getTags()  
+
+Which one of the following code snippets is used to define a JSP page in which the derived servlet inherits the "myclasses.Myclass" class?  
+Choice 1   
+ <%@ page inherits="myclasses.MyClass" %>  
+Choice 2   
+ <%@ page super="myclasses.MyClass" %>  
+Choice 3   
+ <%@ page extends="myclasses.MyClass" %>  
+Choice 4   
+ <%@ extends class = "myclasses.MyClass" %>  
+Choice 5   
+ <%@ inherits class= "myclasses.MyClass" %>  
+
+
+Which one of the following implicit objects is only available after the "isErrorPage" page directive has been set to "true"?  
+Choice 1   
+ page  
+Choice 2   
+ session  
+Choice 3   
+ exception  
+Choice 4   
+ response  
+Choice 5   
+ error  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
