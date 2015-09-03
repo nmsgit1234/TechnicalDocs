@@ -1,0 +1,958 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>faces-config</title>
+</head>
+<body>
+<br>
+<pre>&lt;!--<br> Copyright 2004 Sun Microsystems, Inc. All rights reserved.<br> SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.<br>--&gt;<br><br>&lt;!--<br>    DTD for the JavaServer Faces Application Configuration File (Version 1.0)<br><br>    To support validation of your configuration file(s), include the following<br>    DOCTYPE element at the beginning (after the "xml" declaration):<br><br>    &lt;!DOCTYPE faces-config PUBLIC<br>     "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"<br>     "http://java.sun.com/dtd/web-facesconfig_1_0.dtd"&gt;<br><br>    $Id: web-facesconfig_1_0.dtd,v 1.29.4.1 2004/02/05 18:37:51 rlubke Exp $<br><br>--&gt;<br></pre>
+<hr style="width: 100%; height: 2px;"><br>
+<h2>Top Level Elements<br>
+</h2>
+<h3><li><a name="faces-config">faces-config</a></li>
+</h3>
+<a name="faces-config"></a>
+<p> </p>
+<ul>
+The "faces-config" element is the root of the configuration information
+hierarchy, and contains nested elements for all of the other
+configuration settings.
+  <p></p>
+((<a href="#application">application</a> | <a href="#factory">factory</a>
+| <a href="#component">component</a> | <a href="#converter">converter</a>
+| <a href="#managed-bean">managed-bean</a> | <a
+ href="#navigation-rule">navigation-rule</a> | <a
+ href="#referenced-bean">referenced-bean</a> | <a href="#render-kit">render-kit</a>
+| <a href="#lifecycle">lifecycle</a> | <a href="#validator">validator</a>)*)
+</ul>
+<hr>
+<h2>Definition Elements</h2>
+<p></p>
+<h3><li><a name="application">application<br>
+  </a></li>
+</h3>
+<p><a name="application"> </a></p>
+<ul>
+  <a name="application">The "application" element provides a mechanism
+to define the various per-application-singleton implementation classes
+for a particular web application that is utilizing JavaServer Faces.
+For nested elements that are not specified, the JSF implementation must
+provide a suitable default.
+  </a>
+  <p></p>
+  <a name="application">((</a><a href="#action-listener">action-listener</a>
+| <a href="#message-bundle">message-bundle</a> | <a
+ href="#navigation-handler">navigation-handler</a> | <a
+ href="#view-handler">view-handler</a> | <a href="#property-resolver">property-resolver</a>
+| <a href="#variable-resolver">variable-resolver</a> | <a
+ href="#locale-config">locale-config</a>)*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="factory">factory<br>
+  </a></li>
+</h3>
+<p><a name="factory"> </a></p>
+<ul>
+  <a name="factory">The "factory" element provides a mechanism to
+define the various Factories that comprise parts of the implementation
+of JavaServer Faces. For nested elements that are not specified, the
+JSF implementation must provide a suitable default.
+  </a>
+  <p></p>
+  <a name="factory">((</a><a href="#application-factory">application-factory</a>
+| <a href="#faces-context-factory">faces-context-factory</a> | <a
+ href="#lifecycle-factory">lifecycle-factory</a> | <a
+ href="#render-kit-factory">render-kit-factory</a>)*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="attribute">attribute<br>
+  </a></li>
+</h3>
+<p>
+</p>
+<ul>
+  <a name="attribute">The "attribute" element represents a named,
+typed, value associated with the parent UIComponent via the generic
+attributes mechanism.</a>
+  <p><a name="attribute"> Attribute names must be unique within the
+scope of the parent (or related) component.</a></p>
+  <p></p>
+  <a name="attribute">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>,
+  <a href="#attribute-name">attribute-name</a>,
+  <a href="#attribute-class">attribute-class</a>,
+  <a href="#suggested-value">suggested-value</a>?,
+  <a href="#attribute-extension">attribute-extension</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="attribute-extension">attribute-extension<br>
+  </a></li>
+</h3>
+<p>
+</p>
+<ul>
+  <a name="attribute-extension">Extension element for attribute. May
+contain implementation specific content
+  </a>
+  <p></p>
+  <a name="attribute-extension">ANY</a>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="component">component<br>
+  </a></li>
+</h3>
+<p><a name="component"> </a></p>
+<ul>
+  <a name="component">The "component" element represents a concrete
+UIComponent implementation class that should be registered under the
+specified type identifier, along with its associated properties and
+attributes. Component types must be unique within the entire web
+application.</a>
+  <p><a name="component"> Nested "attribute" elements identify generic
+attributes that are recognized by the implementation logic of this
+component. Nested "property" elements identify JavaBeans properties of
+the component class that may be exposed for manipulation via tools.</a></p>
+  <a name="component">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#component-type">component-type</a>,
+  <a href="#component-class">component-class</a>,
+  <a href="#attribute">attribute</a>*,
+  <a href="#property">property</a>*,
+  <a href="#component-extension">component-extension</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="component-extension">component-extension<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="component-extension"> Extension element for component. May
+contain implementation specific content.</a>
+  <p><a name="component-extension">ANY
+  </a></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="converter">converter<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="converter">The "converter" element represents a concrete
+Converter implementation class that should be registered under the
+specified converter identifier. Converter identifiers must be unique
+within the entire web application.</a>
+  <p><a name="converter"> Nested "attribute" elements identify generic
+attributes that may be configured on the corresponding UIComponent in
+order to affect the operation of the Converter. Nested "property"
+elements identify JavaBeans properties of the Converter implementation
+class that may be configured to affect the operation of the Converter.</a></p>
+  <p></p>
+  <a name="converter">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*, (
+  <a href="#converter-id">converter-id </a> | <a
+ href="#converter-for-class">converter-for-class</a>),
+  <a href="#converter-class">converter-class</a>,
+  <a href="#attribute">attribute</a>*,
+  <a href="#property">property</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="icon">icon<br>
+  </a></li>
+</h3>
+<ul>
+  <p><a name="icon">The "icon" element contains "small-icon" and
+"large-icon" elements that specify the resoruce paths for small and
+large GIF or JPG icon images used to represent the parent element in a
+GUI tool.
+  </a></p>
+  <a name="icon">(</a><a href="#"></a>
+  <a href="#small-icon">small-icon</a>?,
+  <a href="#large-icon">large-icon</a>)?
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><a name="lifecycle"><li>lifecycle<br>
+</li>
+</a></h3>
+<ul>
+  <p><a name="lifecycle">The "lifecycle" element provides a mechanism
+to specify modifications to the behaviour of the default Lifecycle
+implementation for this web application.
+  </a></p>
+  <p><a name="lifecycle">(</a><a href="#phase-listener">phase-listener</a>*)</p>
+</ul>
+<hr>
+<p></p>
+<h3><a name="locale-config"><li>locale-config<br>
+</li>
+</a></h3>
+<ul>
+  <p><a name="locale-config">The "locale-config" element allows the app
+developer to declare the supported locales for this application.
+  </a></p>
+  <a name="locale-config">(</a><a href="#default-locale">default-locale</a>?,
+  <a href="#supported-locale">supported-locale</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="managed-bean">managed-bean<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="managed-bean"> The "managed-bean" element represents a
+JavaBean, of a particular class, that will be dynamically instantiated
+at runtime (by the default VariableResolver implementation) if it is
+referenced as the first element of a value reference expression, and no
+corresponding bean can be identified in any scope. In addition to the
+creation of the managed bean, and the optional storing of it into the
+specified scope, the nested managed-property elements can be used to
+initialize the contents of settable JavaBeans properties of the created
+instance.
+  </a>
+  <p></p>
+  <a name="managed-bean">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#managed-bean-name">managed-bean-name</a>, <a
+ href="#managed-bean-class">managed-bean-class</a>, <a
+ href="#managed-bean-scope">managed-bean-scope</a>,
+(<a href="#managed-property">managed-property</a>* |
+  <a href="#map-entries">map-entries</a> | <a href="#list-entries">list-entries</a>))
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="managed-property">managed-property<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="managed-property">The "managed-property" element represents
+an individual property of a managed bean that will be configured to the
+specified value (or value set) if the corresponding managed bean is
+automatically created.
+  </a>
+  <p></p>
+  <a name="managed-property">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#property-name">property-name</a>, <a
+ href="#propertyn-class">property-class</a>?, (<a href="#map-entries">map-entries</a>
+|
+  <a href="#null-value">null-value</a> | <a href="#-value">value</a> |
+  <a href="#list-entries">list-entries</a>))
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="map-entry">map-entry<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="map-entry"> The "map-entry" element reprsents a single
+key-entry pair that will be added to the computed value of a managed
+property of type java.util.Map.
+  </a>
+  <p></p>
+  <a name="map-entry">(</a><a href="#key">key</a>, (<a
+ href="#null-value">null-value</a> | <a href="#value">value</a>))
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="map-entries">map-entries<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="map-entries">The "map-entries' element represents a set of
+key-entry pairs that will be added to the computed value of a managed
+property of type java.util.Map. In addition, the Java class types of
+the key and entry values may be optionally declared.
+  </a>
+  <p></p>
+  <a name="map-entries">(</a><a href="#key-class">key-class</a>?,
+  <a href="#value-class">value-class</a>?,
+  <a href="#map-entry">map-entry</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="message-bundle">message-bundle<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="message-bundle">The base name of a resource bundle
+representing the message resources for this application. See the
+JavaDocs for the "java.util.ResourceBundle" class for more information
+on the syntax of resource bundle names.
+  </a>
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="navigation-case">navigation-case<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="navigation-case">The "navigation-case" element describes a
+particular combination of conditions that must match for this case to
+be executed, and the view id of the component tree that should be
+selected next.
+  </a>
+  <p></p>
+  <a name="navigation-case">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#from-action">from-action</a>?,
+  <a href="#from-outcome">from-outcome</a>?,
+  <a href="#to-view-id">to-view-id</a>,
+  <a href="#redirect">redirect</a>?)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="navigation-rule">navigation-rule<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="navigation-rule">The "navigation-rule" element represents an
+individual decision rule that will be utilized by the default
+NavigationHandler implementation to make decisions on what view should
+be displayed next, based on the view id being processed.
+  </a>
+  <p></p>
+  <a name="navigation-rule">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#from-view-id">from-view-id</a>?,
+  <a href="#navigation-case">navigation-case</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="property">property<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="property">The "property" element represents a JavaBean
+property of the Java class represented by our parent element.<br>
+Property names must be unique within the scope of the Java class that
+is represented by the parent element, and must correspond to property
+names that will be recognized when performing introspection against
+that class via java.beans.Introspector.
+  </a>
+  <p></p>
+  <a name="property">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#property-name">property-name</a>, <a href="#property-class">property-class</a>,
+  <a href="#suggested-value">suggested-value</a>?, <a
+ href="#property-extension">property-extensions</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="property-extension">property-extension<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="property-extension">Extension element for property. May
+contain implementation specific content.
+  </a>
+  <p></p>
+  <p><a name="property-extension">ANY</a></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="referenced-bean">referenced-bean<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="referenced-bean">The "referenced-bean" element represents at
+design time the promise that a Java object of the specified type will
+exist at runtime in some scope, under the specified key. This can be
+used by design time tools to construct user interface dialogs based on
+the properties of the specified class. The presence or absence of a
+referenced bean element has no impact on the JavaServer Faces runtime
+environment inside a web application.
+  </a>
+  <p></p>
+  <a name="referenced-bean">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#referenced-bean-name">referenced-bean-name</a>, <a
+ href="#referenced-bean-class">referenced-bean-class</a>)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="render-kit">render-kit<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="render-kit">The "render-kit" element represents a concrete
+RenderKit implementation that should be registered under the specified
+render-kit-id. If no render-kit-id is specified, the identifier of the
+default RenderKit (RenderKitFactory.DEFAULT_RENDER_KIT) is assumed.
+  </a>
+  <p></p>
+  <a name="render-kit">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#render-kit-id">render-kit-id</a>?,
+  <a href="#render-kit-class">render-kit-class</a>?,
+  <a href="#renderer">renderer</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="renderer">renderer<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="renderer">The "renderer" element represents a concrete
+Renderer implementation class that should be registered under the
+specified type identifier, in the RenderKit associated with the parent
+render-kit element. Renderer types must be unique within the RenderKit
+associated with the parent "render-kit" element.<br>
+Nested "attribute" elements identify generic component attributes that
+are recognized by this renderer. Nested "supported-component-type" and
+"supported-component-class" elements identify supported component
+classes, by their type identifiers or the implementation class name,
+respectively, that are supported by this Renderer.
+  </a>
+  <p></p>
+  <a name="renderer">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#component-family">component-family</a>,
+  <a href="#renderer-type">renderer-type</a>,
+  <a href="#renderer-class">renderer-class</a>,
+  <a href="#attribute">attribute</a>*,
+  <a href="#supported-component-type">supported-component-type</a>*,
+  <a href="#supported-component-class">supported-component-class</a>*,
+  <a href="#renderer-extension">renderer-extension</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="renderer-extension">renderer-extension<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="renderer-extension">Extension element for renderer. May
+contain implementation specific content
+  </a>
+  <p></p>
+  <p><a name="renderer-extension">ANY</a></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="supported-component-class">supported-component-class<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="supported-component-class">The "supported-component-class"
+element identifies a component class that is supported by the
+surrounding renderer, and the renderer attribute names that are
+relevant for this component class. If no "attribute-name" subelements
+are listed, names from all of the "attribute" declarations for the
+surrounding renderer shall be assumed.
+  </a>
+  <p></p>
+  <a name="supported-component-class">(</a><a href="#component-class">component-class</a>,
+  <a href="#attribute-name">attribute-name</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="supported-component-type">supported-component-type<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="supported-component-type">The "supported-component-type"
+element identifies a component type that is supported by the
+surrounding renderer, and the renderer attribute names that are
+relevant for this component type. If no "attribute-name" subelements
+are listed, names from all of the "attribute" declarations for the
+surrounding renderer shall be assumed.
+  </a>
+  <p></p>
+  <a name="supported-component-type">(</a><a href="#component-type">component-type</a>,
+  <a href="#attribute-name">attribute-name</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="validator">validator<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="validator">The "validator" element represents a concrete
+Validator implementation class that should be registered under the
+specified validator identifier. Validator identifiers must be unique
+within the entire web application.<br>
+Nested "attribute" elements identify generic attributes that may be
+configured on the corresponding UIComponent in order to affect the
+operation of the Validator. Nested "property" elements identify
+JavaBeans properties of the Validator implementation class that may be
+configured to affect the operation of the Validator.
+  </a>
+  <p></p>
+  <a name="validator">(</a><a href="#description">description</a>*,
+  <a href="#display-name">display-name</a>*,
+  <a href="#icon">icon</a>*,
+  <a href="#validator-id">validator-id</a>,
+  <a href="#validator-class">validator-class</a>,
+  <a href="#attribute">attribute</a>*,
+  <a href="#property">property</a>*)
+  <p></p>
+</ul>
+<hr>
+<p></p>
+<h3><li><a name="list-entries">list-entries<br>
+  </a></li>
+</h3>
+<p></p>
+<ul>
+  <a name="list-entries">The "list-entries" element represents a set of
+initialization elements for a managed property that is a java.util.List
+or an array. In the former case, the "value-class" element can
+optionally be used to declare the Java type to which each value should
+be converted before adding it to the Collection
+  </a>
+  <p></p>
+  <a name="list-entries">(</a><a href="#value-class">value-class</a>?,
+(<a href="#null-value">null-value</a> | <a href="#value">value</a>)*)
+  <p></p>
+</ul>
+<hr>
+<h2>Subordinate Elements</h2>
+<p>
+<a name="action-listener"><b>action-listener</b></a></p>
+<p> The "action-listener" element contains the fully qualified class
+name of the concrete ActionListener implementation class that will be
+called during the Invoke Application phase of the request processing
+lifecycle. It must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="application-factory"><b>application-factory</b></a></p>
+<p> The "application-factory" element contains the fully qualified
+class name of the concrete ApplicationFactory implementation class that
+will be called when FactoryFinder.getFactory(APPLICATION_FACTORY) is
+called. It must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="attribute-class"><b>attribute-class</b></a></p>
+<p> The "attribute-class" element represents the Java type of the value
+associated with this attribute name. It must be of type <a
+ href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="attribute-name"><b>attribute-name</b></a></p>
+<p> The "attribute-name" element represents the name under which the
+corresponding value will be stored, in the generic attributes of the
+UIComponent we are related to.
+</p>
+<hr>
+<p><a name="component-class"><b>component-class</b></a></p>
+<p> The "component-class" element represents the fully qualified class
+name of a concrete UIComponent implementation class. It must be of type
+<a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="component-type"><b>component-type</b></a></p>
+<p> The "component-type" element represents the name under which the
+corresponding UIComponent class should be registered
+</p>
+<hr>
+<p><a name="converter-class"><b>converter-class</b></a></p>
+<p> The "converter-class" element represents the fully qualified class
+name of a concrete Converter implementation class. It must be of type <a
+ href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="converter-for-class"><b>converter-for-class</b></a></p>
+<p> The "converter-for-class" element represents the fully qualified
+class name for which a Converter class will be registered. It must be
+of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="converter-id"><b>converter-id</b></a></p>
+<p> The "converter-id" element represents the identifier under which
+the corresponding Converter class should be registered.
+</p>
+<hr>
+<p><a name="default-locale"><b>default-locale</b></a></p>
+<p> The "default-locale" element declares the default locale for this
+application instance. It must be specified as
+:language:[_:country:[_:variant:]] without the colons, for example
+"ja_JP_SJIS". The separators between the segments may be '-' or '_'.
+</p>
+<hr>
+<p><a name="description"><b>description</b></a></p>
+<p> The "description" element contains a textual description of the
+element it is nested in, optionally flagged with a language code using
+the "xml:lang" attribute.
+</p>
+<hr>
+<p><a name="display-name"><b>display-name</b></a></p>
+<p> The "display-name" element is a short descriptive name describing
+the entity associated with the element it is nested in, intended to be
+displayed by tools, and optionally flagged with a language code using
+the "xml:lang" attribute.
+</p>
+<hr>
+<p><a name="faces-context-factory"><b>faces-context-factory</b></a></p>
+<p> The "faces-context-factory" element contains the fully qualified
+class name of the concrete FacesContextFactory implementation class
+that will be called when
+FactoryFinder.getFactory(FACES_CONTEXT_FACTORY) is called. It must be
+of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="from-action"><b>from-action</b></a></p>
+<p> The "from-action" element contains an action reference expression
+that must have been executed (by the default ActionListener for
+handling application level events) in order to select this navigation
+rule. If not specified, this rule will be relevant no matter which
+action reference was executed (or if no action reference was executed).<br>
+This value must be of type <a href="#Action">Action</a>.
+</p>
+<hr>
+<p><a name="from-outcome"><b>from-outcome</b></a></p>
+<p> The "from-outcome" element contains a logical outcome string
+returned by the execution of an application action method selected via
+an "actionRef" property (or a literal value specified by an "action"
+property) of a UICommand component. If specified, this rule will be
+relevant only if the outcome value matches this element's value. If not
+specified, this rule will be relevant no matter what the outcome value
+was.
+</p>
+<hr>
+<p><a name="from-view-id"><b>from-view-id</b></a></p>
+<p> The "from-view-id" element contains the view identifier of the view
+for which the containing navigation rule is relevant. If no "from-view"
+element is specified, this rule applies to navigation decisions on all
+views. If this element is not specified, a value of "*" is assumed,
+meaning that this navigation rule applies to all views. This value must
+be of type "ViewIdPattern".
+</p>
+<hr>
+<p><a name="key"><b>key</b></a></p>
+<p> The "key" element is the String representation of a map key that
+will be stored in a managed property of type java.util.Map.
+</p>
+<hr>
+<p><a name="key-class"><b>key-class</b></a></p>
+<p> The "key-class" element defines the Java type to which each "key"
+element in a set of "map-entry" elements will be converted to. It must
+be of type <a href="#ClassName">ClassName</a>. If omitted,
+"java.lang.String" is assumed.
+</p>
+<hr>
+<p><a name="large-icon"><b>large-icon</b></a></p>
+<p> The "large-icon" element contains the resource path to a large
+(32x32) icon image. The image may be in either GIF or JPG format.
+</p>
+<hr>
+<p><a name="lifecycle-factory"><b>lifecycle-factory</b></a></p>
+<p> The "lifecycle-factory" element contains the fully qualified class
+name of the concrete LifecycleFactory implementation class that will be
+called when FactoryFinder.getFactory(LIFECYCLE_FACTORY) is called. It
+must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="managed-bean-class"><b>managed-bean-class</b></a></p>
+<p> The "managed-bean-class" element represents the fully qualified
+class name of the Java class that will be used to instantiate a new
+instance if creation of the specified managed bean is requested. It
+must be of type <a href="#ClassName">ClassName</a>. The specified
+class must conform to standard JavaBeans conventions. In particular, it
+must have a public zero-arguments constructor, and zero or more public
+property setters.
+</p>
+<hr>
+<p><a name="managed-bean-name"><b>managed-bean-name</b></a></p>
+<p> The "managed-bean-name" element represents the attribute name under
+which a managed bean will be searched for, as well as stored (unless
+the "managed-bean-scope" value is "none"). It must be of type <a
+ href="#Identifier">Identifier</a>.
+</p>
+<hr>
+<p><a name="managed-bean-scope"><b>managed-bean-scope</b></a></p>
+<p> The "managed-bean-scope" element represents the scope into which a
+newly created instance of the specified managed bean will be stored
+(unless the value is "none"). It must be of type <a href="#ScopeOrNone">ScopeOrNone</a>.
+</p>
+<hr>
+<p><a name="navigation-handler"><b>navigation-handler</b></a></p>
+<p> The "navigation-handler" element contains the fully qualified class
+name of the concrete NavigationHandler implementation class that will
+be called during the Invoke Application phase of the request processing
+lifecycle, if the default ActionListener (provided by the JSF
+implementation) is used. It must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="phase-listener"><b>phase-listener</b></a></p>
+<p> The "phase-listener" element contains the fully qualified class
+name of the concrete PhaseListener implementation class that will be
+registered on the Lifecycle. It must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="redirect"><b>redirect</b></a></p>
+<p> The "redirect" element indicates that navigation to the specified
+"to-view-id" should be accomplished by performing an HTTP redirect
+rather than the usual ViewHandler mechanisms.
+</p>
+<hr>
+<p><a name="suggested-value"><b>suggested-value</b></a></p>
+<p> The "suggested-value" contains the value for the property or
+attribute in which this element resides. This value is advisory only
+and is intended for tools to use when populating pallettes.
+</p>
+<hr>
+<p><a name="view-handler"><b>view-handler</b></a></p>
+<p> The "view-handler" element contains the fully qualified class name
+of the concrete ViewHandler implementation class that will be called
+during the Restore View and Render Response phases of the request
+processing lifecycle. The faces implementation must provide a default
+implementation of this class
+</p>
+<hr>
+<p><a name="null-value"><b>null-value</b></a></p>
+<p> The "null-value" element indicates that the managed property in
+which we are nested will be explicitly set to null if our managed bean
+is automatically created. This is different from omitting the managed
+property element entirely, which will cause no property setter to be
+called for this property.<br>
+The "null-value" element can only be used when the associated
+"property-class" identifies a Java class, not a Java primitive.
+</p>
+<hr>
+<p><a name="property-class"><b>property-class</b></a></p>
+<p> The "property-class" element represents the Java type of the value
+associated with this property name. It must be of type <a
+ href="#JavaType">JavaType</a>. If not specified, it can be inferred
+from existing classes; however, this element should be specified if the
+configuration file is going to be the source for generating the
+corresponding classes.
+</p>
+<hr>
+<p><a name="property-name"><b>property-name</b></a></p>
+<p> The "property-name" element represents the JavaBeans property name
+under which the corresponding value may be stored.
+</p>
+<hr>
+<p><a name="property-resolver"><b>property-resolver</b></a></p>
+<p> The "property-resolver" element contains the fully qualified class
+name of the concrete PropertyResolver implementation class that will be
+used during the processing of value reference expressions. It must be
+of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="referenced-bean-class"><b>referenced-bean-class</b></a></p>
+<p> The "referenced-bean-class" element represents the fully qualified
+class name of the Java class (either abstract or concrete) or Java
+interface implemented by the corresponding referenced bean. It must be
+of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="referenced-bean-name"><b>referenced-bean-name</b></a></p>
+<p> The "referenced-bean-name" element represents the attribute name
+under which the corresponding referenced bean may be assumed to be
+stored, in one of the scopes defined by the <a href="#Scope">Scope</a>
+type. It must be of type <a href="#Identifier">Identifier</a>.
+</p>
+<hr>
+<p><a name="render-kit-id"><b>render-kit-id</b></a></p>
+<p> The "render-kit-id" element represents an identifier for the
+RenderKit represented by the parent "render-kit" element.
+</p>
+<hr>
+<p><a name="render-kit-class"><b>render-kit-class</b></a></p>
+<p> The "render-kit-class" element represents the fully qualified class
+name of a concrete RenderKit implementation class. It must be of type <a
+ href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="renderer-class"><b>renderer-class</b></a></p>
+<p> The "renderer-class" element represents the fully qualified class
+name of a concrete Renderer implementation class. It must be of type <a
+ href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="render-kit-factory"><b>render-kit-factory</b></a></p>
+<p> The "render-kit-factory" element contains the fully qualified class
+name of the concrete RenderKitFactory implementation class that will be
+called when FactoryFinder.getFactory(RENDER_KIT_FACTORY) is called. It
+must be of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="component-family"><b>component-family</b></a></p>
+<p>The  component-family  element represents the component family for which the Renderer represented by the parent  renderer  element will be used.
+</p>
+<hr>
+<p><a name="renderer-type"><b>renderer-type</b></a></p>
+<p> The "renderer-type" element represents an identifier for the
+Renderer represented by the parent "renderer" element.
+</p>
+<hr>
+<p><a name="small-icon"><b>small-icon</b></a></p>
+<p> The "small-icon" element contains the resource path to a large
+(16x16) icon image. The image may be in either GIF or JPG format.
+</p>
+<hr>
+<p><a name="supported-locale"><b>supported-locale</b></a></p>
+<p> The "supported-locale" element allows authors to declare which
+locales are supported in this application instance.<br>
+It must be specified as :language:[_:country:[_:variant:]] without the
+colons, for example "ja_JP_SJIS". The separators between the segments
+may be '-' or '_'.
+</p>
+<hr>
+<p><a name="to-view-id"><b>to-view-id</b></a></p>
+<p> The "to-view" element contains the view identifier of the next view
+that should be displayed if this navigation rule is matched. It must be
+of type "ViewId".
+</p>
+<hr>
+<p><a name="validator-class"><b>validator-class</b></a></p>
+<p> The "validator-class" element represents the fully qualified class
+name of a concrete Validator implementation class. It must be of type <a
+ href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<p><a name="validator-id"><b>validator-id</b></a></p>
+<p> The "validator-id" element represents the identifier under which
+the corresponding Validator class should be registered.
+</p>
+<hr>
+<p><a name="value"><b>value</b></a></p>
+<p> The "value" element is the String representation of a literal value
+to which a scalar managed property will be set, or a value reference
+expression ("#{...}") that will be used to calculate the required
+value. It will be converted as specified for the actual property type.
+</p>
+<hr>
+<p><a name="value-class"><b>value-class</b></a></p>
+<p> The "value-class" element defines the Java type to which each
+"value" element's value will be converted to, prior to adding it to the
+"list-entries" list for a managed property that is a java.util.List, or
+a "map-entries" map for a managed property that is a java.util.Map. It
+must be of type <a href="#ClassName">ClassName</a>. If omitted,
+"java.lang.String" is assumed.
+</p>
+<hr>
+<p><a name="variable-resolver"><b>variable-resolver</b></a></p>
+<p> The "variable-resolver" element contains the fully qualified class
+name of the concrete VariableResolver implementation class that will be
+used during the processing of value reference expressions. It must be
+of type <a href="#ClassName">ClassName</a>.
+</p>
+<hr>
+<h2>Defined Types</h2>
+<p>
+<a name="Action"><b>Action</b></a></p>
+<p> An "Action" is a String that represents a method reference
+expression that points at a method with no arguments that returns a
+String. It must be bracketed with "#{}", for example,
+"#{cardemo.buyCar}"
+</p>
+<hr>
+<p><a name="ClassName"><b>ClassName</b></a></p>
+<p> A "ClassName" is the fully qualified name of a Java class that is
+instantiated to provide the functionality of the enclosing element.
+</p>
+<hr>
+<p><a name="Identifier"><b>Identifier</b></a></p>
+<p> An "Identifier" is a string of characters that conforms to the
+variable naming conventions of the Java programming language (JLS
+Section ?.?.?).
+</p>
+<hr>
+<p><a name="JavaType"><b>JavaType</b></a></p>
+<p> A "JavaType" is either the fully qualified name of a Java class
+that is instantiated to provide the functionality of the enclosing
+element, or the name of a Java primitive type (such as int or char).
+The class name or primitive type may optionally be followed by "[]" to
+indicate that the underlying data must be an array, rather than a
+scalar variable.
+</p>
+<hr>
+<p><a name="Language"><b>Language</b></a></p>
+<p> A "Language" is a lower case two-letter code for a language as
+defined by ISL-639.
+</p>
+<hr>
+<p><a name="ResourcePath"><b>ResourcePath</b></a></p>
+<p> A "ResourcePath" is the relative or absolute path to a resource
+file (such as a logo image).
+</p>
+<hr>
+<p><a name="Scope"><b>Scope</b></a></p>
+<p> A "Scope" is the well-known name of a scope in which managed beans
+may optionally be defined to be created in.</p>
+<p>(request|session|application)
+</p>
+<hr>
+<p><a name="ScopeOrNone"><b>ScopeOrNone</b></a></p>
+<p> A "ScopeOrNone" is the well-known name of a scope in which managed
+beans may optionally be defined to be created in, or "none".</p>
+<p>(request|session|application|none)
+</p>
+<hr>
+<p><a name="ViewIdPattern"><b>ViewIdPattern</b></a></p>
+<p> A "ViewIdPattern" is a pattern for matching view identifiers in
+order to determine whether a particular navigation rule should be
+fired. It must contain one of the following values:<br>
+</p>
+<ul>
+- The exact match for a view identifier that is recognized by the the
+ViewHandler implementation being used (such as "/index.jsp" if you are
+using the default ViewHandler).<br>
+- A proper prefix of a view identifier, plus a trailing "*" character.
+This pattern indicates that all view identifiers that match the portion
+of the pattern up to the asterisk will match the surrounding rule. When
+more than one match exists, the match with the longest pattern is
+selected.<br>
+- An "*" character, which means that this pattern applies to all view
+identifiers.
+</ul>
+<br>
+<p></p>
+<hr>
+</body>
+</html>
