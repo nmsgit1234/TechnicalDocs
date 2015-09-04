@@ -1,0 +1,7 @@
+ What are the responsibilities of the ScrumMaster?
+- What is the maximum length of a Sprint?
+- What is the difference between the Product Backlog and the Sprint Backlog?
+- What occurs during the first and second parts of the Sprint Planning Meeting?
+- What do team members report during the Daily Scrum Meeting?
+- What is the difference between the Sprint Review and the Sprint Retrospective?
+ 
