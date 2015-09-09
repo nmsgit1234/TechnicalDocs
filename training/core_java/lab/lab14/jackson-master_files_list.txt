@@ -1,0 +1,4 @@
+jackson-master/
+jackson-master/.gitignore
+jackson-master/README.md
+jackson-master/contributor-agreement.pdf
