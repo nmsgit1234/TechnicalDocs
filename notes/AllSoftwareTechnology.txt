@@ -35,4 +35,11 @@ resin
 JOTM
 JOnAS
 JRun4
+tortoisecvs
+bugzilla
+schemaspy
+winmerge
+graphviz
+hibernate
+
 
