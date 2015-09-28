@@ -41,5 +41,12 @@ schemaspy
 winmerge
 graphviz
 hibernate
+IBM Infosphere Biginsight
+IBM Infosphere Streams
+jaql
+Atlasian BitBucket
+
+
+
 
 
