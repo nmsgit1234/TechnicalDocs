@@ -1,9 +1,9 @@
 package com.tutorial.threads;
 
-public class DecrementCounterThread implements Runnable{
-	Counter cntr = null;
+public class SBDecrementCounterThread implements Runnable{
+	SBCounter cntr = null;
 	
-	public DecrementCounterThread(Counter cntrObj){
+	public SBDecrementCounterThread(SBCounter cntrObj){
 		this.cntr=cntrObj;
 	}
 

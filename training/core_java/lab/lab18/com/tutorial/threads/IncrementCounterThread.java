@@ -9,7 +9,6 @@ public class IncrementCounterThread implements Runnable{
 
 	public void run(){
 		for(;;){
-		System.out.println(Thread.currentThread().getName() + ": Before incrementing value is :" + cntr.getValue());
 		
 		cntr.increment();
 		try{
@@ -18,7 +17,6 @@ public class IncrementCounterThread implements Runnable{
 			ex.printStackTrace();
 		}		
 		//cntr.decrement();
-		System.out.println(Thread.currentThread().getName() + ": After incrementing value is :" + cntr.getValue());
 		}
 	}
 }
