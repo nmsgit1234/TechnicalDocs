@@ -2,6 +2,7 @@ package com.tutorial.io;
 
 import java.nio.file.*;
 import java.nio.file.attribute.*;
+import java.io.*;
 
 public class FileMetaData{
 
@@ -61,15 +62,41 @@ public class FileMetaData{
 				" attributes not supported:" + x);
 		}
 		
+		//#####################
+		// Determining MIME Type
+		//#####################
+		try {
+			String type = Files.probeContentType(file);
+			System.out.format("The mimetype of %s is %s%n",file,type);
+			if (type == null) {
+				System.err.format("'%s' has an" + " unknown filetype.%n", file);
+			} else if (!type.equals("text/plain")) {
+				System.err.format("'%s' is not" + " a plain text file.%n", file);
+				//continue;
+			}
+		} catch (IOException x) {
+			System.err.println(x);
+		}		
 		
+		//#####################
+		// Default file system
+		//#####################
+		PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.*");
+		System.out.format("The default file system is %s%n",matcher);
 		
+		//#####################
+		// Path string separator
+		//#####################
+		String separator = FileSystems.getDefault().getSeparator();
+		System.out.format("The path string separator is %s%n", separator);
 		
-		
-		
-		
-		
-		
-		
+		//#####################
+		// File System's File Stores
+		//#####################
+		for (FileStore store: FileSystems.getDefault().getFileStores()) {
+		   System.out.format("The filestore name is %s%n",store.name());
+		   System.out.format("The filestore total space is %s%n",store.getTotalSpace());
+		}		
 		
 		
 		

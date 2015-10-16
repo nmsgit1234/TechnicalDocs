@@ -61,7 +61,17 @@ public class WorkingWithDirectories{
 			System.err.println(x);
 		}		
 		
-		
+		//Creating symbolic link
+		Path newLink = Paths.get("D:/testsymlink");
+		Path target = Paths.get("xanadu.txt");
+		try {
+			Files.createSymbolicLink(newLink, target);
+		} catch (IOException x) {
+			System.err.println(x);
+		} catch (UnsupportedOperationException x) {
+			// Some file systems do not support symbolic links.
+			System.err.println("Not supported: " + x);
+		}		
 		
 		
 		
