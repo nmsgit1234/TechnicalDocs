@@ -45,6 +45,17 @@ IBM Infosphere Biginsight
 IBM Infosphere Streams
 jaql
 Atlasian BitBucket
+•	R
+•	Mesos
+•	Falcon
+
+•	HPCC
+•	DataTorrent
+raspberry pi
+
+
+
+
 
 
 
