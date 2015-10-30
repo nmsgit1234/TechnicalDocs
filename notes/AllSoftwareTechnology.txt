@@ -52,7 +52,7 @@ Atlasian BitBucket
 •	HPCC
 •	DataTorrent
 raspberry pi
-
+oracle big data lite
 
 
 
