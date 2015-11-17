@@ -54,6 +54,10 @@ Atlasian BitBucket
 raspberry pi
 oracle big data lite
 mockaroo
+qlikview
+biz tak
+sitecore
+sharepoint
 
 
 
