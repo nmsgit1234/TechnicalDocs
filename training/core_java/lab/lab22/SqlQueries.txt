@@ -1,0 +1,70 @@
+# Demonstrate creating the table
+
+CREATE TABLE CUSTOMER (
+CUSTOMERID INT, 
+CUSTOMERNAME VARCHAR(20),
+ADDRESS VARCHAR(50),
+CITY VARCHAR(20),
+POSTALCODE VARCHAR(10),
+COUNTRY VARCHAR(20)
+);
+
+# Demostrate delete a table;
+DROP TABLE CUSTOMER;
+
+CREATE TABLE CUSTOMERS (
+	CUSTOMERID INT, 
+	CUSTOMERNAME VARCHAR(20),
+	ADDRESS VARCHAR(50),
+	CITY VARCHAR(20),
+	POSTALCODE VARCHAR(10),
+	COUNTRY VARCHAR(20)
+);
+
+
+# Demonstrate inserting records into the table
+INSERT INTO CUSTOMERS (CUSTOMERID,CUSTOMERNAME,ADDRESS,CITY,POSTALCODE,COUNTRY) VALUES (1,'RAHUL','123,3RD CROSS,R.T.NAGAR','BANGALORE','560012','INDIA');
+
+INSERT INTO CUSTOMERS VALUES (2,'Suresh','347,7th CROSS,Jayanagar','BANGALORE','560023','INDIA');
+
+INSERT INTO CUSTOMERS VALUES (3,'Ramesh','54,3rd Main, 4th cross,B.T.M.Layout','BANGALORE','560006','INDIA');
+
+INSERT INTO CUSTOMERS VALUES (4,'Rakesh','65,2nd Main, 5th cross,J.P.Nagar','Mysore','570034','INDIA');
+
+# Demonstrate select statement for selecting all the records from the table;
+
+SELECT * FROM CUSTOMERS;
+
+# Demonstrate duplicate records insertion.
+
+# Demonstrate deleting the records using delete/truncate and selective deletion.
+
+# Demonstration the usage of the unique key after repeatedly inserting the duplicate records above.
+
+CREATE TABLE CUSTOMERS (
+	CUSTOMERID INT UNIQUE, 
+	CUSTOMERNAME VARCHAR(20),
+	ADDRESS VARCHAR(50),
+	CITY VARCHAR(20),
+	POSTALCODE VARCHAR(10),
+	COUNTRY VARCHAR(20)
+);
+
+# Demonstrate the unique key feature by re-inserting the records multiple times.
+
+# Demonstration of the primary key
+
+CREATE TABLE CUSTOMERS (
+	CUSTOMERID INT UNIQUE NOT NULL, 
+	CUSTOMERNAME VARCHAR(20),
+	ADDRESS VARCHAR(50),
+	CITY VARCHAR(20),
+	POSTALCODE VARCHAR(10),
+	COUNTRY VARCHAR(20),
+	PRIMARY KEY (CUSTOMERID)
+);
+
+
+
+
+
