@@ -31,6 +31,8 @@ INSERT INTO CUSTOMERS VALUES (3,'Ramesh','54,3rd Main, 4th cross,B.T.M.Layout','
 
 INSERT INTO CUSTOMERS VALUES (4,'Rakesh','65,2nd Main, 5th cross,J.P.Nagar','Mysore','570034','INDIA');
 
+INSERT INTO CUSTOMERS VALUES (5,'Ashok','#23,12th Main, 6th cross,Udaygiri','Mysore','570019','INDIA');
+
 # Demonstrate select statement for selecting all the records from the table;
 
 SELECT * FROM CUSTOMERS;
@@ -63,6 +65,71 @@ CREATE TABLE CUSTOMERS (
 	COUNTRY VARCHAR(20),
 	PRIMARY KEY (CUSTOMERID)
 );
+
+# Demonstration of the foreign key
+
+CREATE TABLE ORDERS (
+	ORDERID INT,
+	CUSTOMERID INT,
+	ORDER_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	PRIMARY KEY (ORDERID),
+	FOREIGN KEY (CUSTOMERID) REFERENCES CUSTOMERS(CUSTOMERID)
+);
+
+insert into ORDERS values (1000,2,'20150123');
+insert into ORDERS values (1001,2,'20140124');
+insert into ORDERS values (1002,2,'20140523');
+insert into ORDERS values (1003,2,'20150216');
+insert into ORDERS values (1004,2,'20150812');
+
+insert into ORDERS values (1005,3,'20140123');
+insert into ORDERS values (1006,3,'20130124');
+insert into ORDERS values (1007,3,'20140623');
+insert into ORDERS values (1008,3,'20150216');
+insert into ORDERS values (1009,3,'20140812');
+
+insert into ORDERS values (1010,4,'20140123');
+insert into ORDERS values (1011,4,'20130124');
+insert into ORDERS values (1012,4,'20140623');
+insert into ORDERS values (1013,4,'20150216');
+insert into ORDERS values (1014,4,'20140812');
+
+# Demostrate selection with where clause.
+
+SELECT * FROM ORDERS WHERE CUSTOMERID=3;
+
+# Demonstrate like and 'AND' key words.
+select * from customers where customername like 'Rak%' and country='INDIA';
+
+# Demonstrate order by clause;
+select * from customers order by customername desc;
+
+# Demonstrate select using 'between';
+select * from orders where orderid between 1000 and 1005;
+
+# Demostrate select using where in
+select * from orders where orderid in (1000,1001);
+
+# Demonstrate using the aliases.
+select customerid as id, customername as name from customers
+
+# Demonstrate UPDATE
+update customers set address="221, 5th cross" and postalcode='560231' where CUSTOMERID=2;
+
+# Demonstrate inner join
+select customers.customername,orders.orderid from orders inner join customers on customers.customerid=orders.customerid;
+
+# Demonstrate left join
+select customers.customerid,customers.customername,orders.orderid from customers left join orders on customers.customerid=orders.customerid;
+
+# Demonstrate right join
+select customers.customerid,customers.customername,orders.orderid from customers right join orders on customers.customerid=orders.customerid;
+
+# Full outer join
+
+select customers.customerid,customers.customername,orders.orderid from customers left join orders on customers.customerid=orders.customerid
+union
+select customers.customerid,customers.customername,orders.orderid from customers right join orders on customers.customerid=orders.customerid;
 
 
 
