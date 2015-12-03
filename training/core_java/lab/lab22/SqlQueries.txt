@@ -1,5 +1,14 @@
 # Demonstrate creating the table
 
+CREATE TABLE EMPLOYEES
+(
+   ID INT NOT NULL,
+   AGE INT NOT NULL,
+   FIRST VARCHAR(255),
+   LAST VARCHAR(255),
+   PRIMARY KEY ( ID )
+);
+
 CREATE TABLE CUSTOMER (
 CUSTOMERID INT, 
 CUSTOMERNAME VARCHAR(20),
@@ -21,6 +30,11 @@ CREATE TABLE CUSTOMERS (
 	COUNTRY VARCHAR(20)
 );
 
+
+INSERT INTO Employees VALUES (100, 18, 'Zara', 'Ali');
+INSERT INTO Employees VALUES (101, 25, 'Mahnaz', 'Fatma');
+INSERT INTO Employees VALUES (102, 30, 'Zaid', 'Khan');
+INSERT INTO Employees VALUES (103, 28, 'Sumit', 'Mittal');
 
 # Demonstrate inserting records into the table
 INSERT INTO CUSTOMERS (CUSTOMERID,CUSTOMERNAME,ADDRESS,CITY,POSTALCODE,COUNTRY) VALUES (1,'RAHUL','123,3RD CROSS,R.T.NAGAR','BANGALORE','560012','INDIA');
@@ -75,6 +89,28 @@ CREATE TABLE ORDERS (
 	PRIMARY KEY (ORDERID),
 	FOREIGN KEY (CUSTOMERID) REFERENCES CUSTOMERS(CUSTOMERID)
 );
+
+create table order_details (
+	order_details_id int,
+	orderid int,
+	itemname varchar(20),
+	quantity int,
+	price numeric(10,2),
+	total_price numeric(10,2),
+	primary key (order_details_id),
+	foreign key (orderid) references orders(orderid)
+);
+
+insert into order_details values (1,1000,'computer',1,21000.00,21000.00);
+insert into order_details values (2,1000,'tv',5,18000.00,90000.00);
+insert into order_details values (3,1000,'flash drive',8,549.00,4392.00);
+insert into order_details values (4,1000,'hard disk',1,700.00,700.00);
+insert into order_details values (5,1000,'mobile phone',3,21200.00,63600.00);
+
+
+
+
+
 
 insert into ORDERS values (1000,2,'20150123');
 insert into ORDERS values (1001,2,'20140124');

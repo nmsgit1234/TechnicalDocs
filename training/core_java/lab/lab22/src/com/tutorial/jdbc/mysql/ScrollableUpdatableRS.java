@@ -52,7 +52,21 @@ public class ScrollableUpdatableRS {
 	         
 	         rs.updateString("address", address + ",INDIA");
 	         rs.updateRow();
-		      System.out.println(id + "\t" + name + "\t" + address + "\t" + city + "\t" + postalcode + "\t" + country);	      }
+		      System.out.println(id + "\t" + name + "\t" + address + "\t" + city + "\t" + postalcode + "\t" + country);	      
+		}
+	      
+	      //Inserting a row directly in the resultset.
+	      rs.moveToInsertRow();
+	      rs.updateInt("customerid", 6);
+	      rs.updateString("customername", "Santosh");
+	      rs.updateString("address", "123,54th cross, Hebbal");
+	      rs.updateString("city", "Mysore");
+	      rs.updateString("postalcode", "570023");
+	      rs.updateString("country", "India");
+	      
+	      rs.insertRow();
+	      rs.beforeFirst();
+	      
 	   }catch(SQLException se){
 	      //Handle errors for JDBC
 	      se.printStackTrace();
